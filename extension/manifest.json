@@ -1,0 +1,22 @@
+{
+  "name": "oVice Tools",
+  "version": "1.0.0.38",
+  "description": "oVice Tools",
+  "permissions": [
+    "tabs",
+    "declarativeContent",
+    "activeTab",
+    "storage",
+    "notifications",
+    "alarms",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://qin.ovice.in/*"],
+      "js": ["js/content_script.js"]
+    }
+  ],
+  "manifest_version": 2
+}
