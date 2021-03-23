@@ -3,7 +3,9 @@ script.innerHTML = `
 function testBtn(){
   let userList = [];
   ovice.webrtc.users().forEach((item)=>{
-    userList.push(item.name + "_[" + item.x + "x" + item.y + "]");
+    if(item.name){
+      userList.push(item.name + "_[" + item.x + "x" + item.y + "]");
+    };
   });
   alert(userList.join('\\n'));
 };
