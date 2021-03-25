@@ -1,3 +1,7 @@
+let mklet = document.createElement("script");
+mklet.src = "//cti-tl.github.io/mklet/js/mklet.js";
+document.body.appendChild(mklet);
+
 let script = document.createElement("script");
 script.innerHTML = `
 function testBtn(){
@@ -7,7 +11,13 @@ function testBtn(){
       userList.push(item.name + "_[" + item.x + "x" + item.y + "]");
     };
   });
-  alert(userList.join('\\n'));
+  mklet.makeWindow((win, e) => {
+    userList.forEach((user)=>{
+      let ele = document.createElement('div');
+      ele.innerHTML = '<input type="checkbox"> ' + user + '</input>';
+      win.appendChild(ele);
+    });
+  });
 };
 function badgeBtn(){
   let arr = [];
@@ -24,7 +34,16 @@ function badgeBtn(){
       }
     }
   });
-  alert(arr.toString());
+  console.log(arr);
+  mklet.makeWindow((win, e) => {
+    Object.keys(arr).forEach((key)=>{
+      if(arr[key].users){
+        let ele = document.createElement('div');
+        ele.innerHTML = '<img src="' + key + '" width="32px" height="32px">count:' + arr[key].count + '<div>users:</div><div style="display:flex;flex-direction: row;flex-wrap: wrap;"><div style="margin:2px;">' + arr[key].users.join('</div><div style="margin:2px;">') + '</div></div>';
+        win.appendChild(ele);
+      }
+    });
+  });
 }
 function megaphone(){
   ovice.setMegaphone(!ovice.megaphone());
@@ -98,8 +117,7 @@ btns.innerHTML = `
 <button onClick="kanyoKanjiCyusen();" style="font-size:1.4rem;width:50px;height:50px;" title="Kanyo幹事抽選補助ツール"><i class="fa fa-child"></i></button>
 <button onClick="kanyoCyusen();" style="font-size:1.4rem;width:50px;height:50px;" title="Kanyo抽選補助ツール"><i class="fa fa-cube"></i></button>
 <button onClick="testBtn();" style="font-size:1.4rem;width:50px;height:50px;" title="ユーザーリスト"><i class="fa fa-users"></i></button>
-<button onClick="badgeBtn();" style="font-size:1.4rem;width:50px;height:50px;" title="アイコンリスト"><i class="fa fa-bullseye"></i></button>
-<button onClick="megaphone();" style="font-size:1.4rem;width:50px;height:50px;" title="メガホン"><i class="fa fa-bullhorn"></i></button>
+<button onClick="badgeBtn();" style="font-size:1.4rem;width:50px;height:50px;" title="アイコンリスト"><i class="fa fa-certificate"></i></button>
 <button onClick="archives();" style="font-size:1.4rem;width:50px;height:50px;" title="アーカイブ"><i class="fa fa-archive"></i></button>
 <button onClick="IT_daigaku();" style="font-size:1.4rem;width:50px;height:50px;" title="しまぶーのIT大学"><i class="fa fa-graduation-cap"></i></button>
 <button onClick="QinTechBoard();" style="font-size:1.4rem;width:50px;height:50px;" title="QinTechBoard"><i class="fa fa-book"></i></button>
