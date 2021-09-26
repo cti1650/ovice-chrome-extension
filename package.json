@@ -1,0 +1,13 @@
+{
+  "dependencies": {},
+  "scripts": {
+    "zip": "python scripts/main.py zip",
+    "mkicon": "python scripts/main.py mkicon",
+    "manifest": "python scripts/main.py manifest",
+    "release": "python scripts/main.py release",
+    "major": "python scripts/main.py major",
+    "minor": "python scripts/main.py minor",
+    "patch": "python scripts/main.py patch"
+  },
+  "devDependencies": {}
+}

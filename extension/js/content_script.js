@@ -2,19 +2,27 @@ let mklet = document.createElement("script");
 mklet.src = "//cti-tl.github.io/mklet/js/mklet.js";
 document.body.appendChild(mklet);
 
+let oviceTools = document.createElement("script");
+oviceTools.src = "//cti-tl.github.io/mklet/js/oviceTools.js";
+document.body.appendChild(oviceTools);
+
+// let axios_cdn = document.createElement("script");
+// axios_cdn.src = "//cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
+// document.body.appendChild(axios_cdn);
+
 let script = document.createElement("script");
 script.innerHTML = `
 function testBtn(){
   let userList = [];
   ovice.webrtc.users().forEach((item)=>{
     if(item.name){
-      userList.push(item.name + "_[" + item.x + "x" + item.y + "]");
+      userList.push(item.name + " [" + item.x + "x" + item.y + "]");
     };
   });
   mklet.makeWindow((win, e) => {
     userList.forEach((user)=>{
       let ele = document.createElement('div');
-      ele.innerHTML = '<input type="checkbox"> ' + user + '</input>';
+      ele.innerHTML = '<label style="padding-top:3px;font-size:1.5rem;"><input type="checkbox"> ' + user + '</input></label>';
       win.appendChild(ele);
     });
   });
@@ -39,7 +47,7 @@ function badgeBtn(){
     Object.keys(arr).forEach((key)=>{
       if(arr[key].users){
         let ele = document.createElement('div');
-        ele.innerHTML = '<img src="' + key + '" width="32px" height="32px">count:' + arr[key].count + '<div>users:</div><div style="display:flex;flex-direction: row;flex-wrap: wrap;"><div style="margin:2px;">' + arr[key].users.join('</div><div style="margin:2px;">') + '</div></div>';
+        ele.innerHTML = '<img src="' + key + '" width="18px" height="18px">count:' + arr[key].count + '<div>users:</div><div style="display:flex;flex-direction: row;flex-wrap: wrap;"><div style="margin:2px;">' + arr[key].users.join('</div><div style="margin:2px;">') + '</div></div>';
         win.appendChild(ele);
       }
     });
